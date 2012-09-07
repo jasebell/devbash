@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="DevbashDemo" default="dist" basedir=".">
+	<property name="src" value="src" />
+	<property name="lib" value="lib" />
+	<property name="build" value="build" />
+	<property name="dist" value="dist" />
+
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<target name="init.core">
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compile.core" depends="init.core">
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath>
+				<fileset dir="${lib}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile.core">
+		<jar basedir="${build}" jarfile="${dist}/devbashdemohadoop.jar" />
+	</target>
+	
+</project>
